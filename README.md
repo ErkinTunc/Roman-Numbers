@@ -5,3 +5,26 @@
 [Guide JUnit](https://docs.junit.org/5.7.2/user-guide/)
 
 1. Added Testing (Tests de réussite,Tests d’échec,Tests de validité)
+   > ./gradlew test
+2. Implemented toRoman() et fromRoman() , passes all the tests
+   - _getRomanFromNumber(int a)_
+   - _getNumberFromRoman(String a)_
+3.
+
+## Gradlew
+
+1. > ./gradlew run
+
+   Run with the run task, which assembles the application and executes some script or binary
+
+2. > ./gradlew build
+
+   Gradle builds for the build task to designate assembling all outputs and running all
+
+3. > ./gradlew clean
+
+   Delete the contents of the build directory using the clean task. Doing so will cause pre-computed outputs to be lost
+
+- > ./gradlew test
+
+  Runs the test task for all subprojects when invoked from the root project

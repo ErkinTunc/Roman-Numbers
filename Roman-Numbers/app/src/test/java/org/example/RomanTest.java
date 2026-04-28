@@ -17,14 +17,11 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class RomanTest {
 
-    /*
-     * @Test
-     * public void testConverter() {
-     * assertEquals("IV", RomanConverter.getRomanFromNumber(4));
-     * assertThrows(IllegalArgumentException.class, () ->
-     * RomanConverter.getRomanFromNumber(-2));
-     * }
-     */
+    @Test
+    public void testConverter() {
+        assertEquals("IV", RomanConverter.getRomanFromNumber(4));
+        assertThrows(IllegalArgumentException.class, () -> RomanConverter.getRomanFromNumber(-2));
+    }
 
     // TODO : les autres tests
 
@@ -152,6 +149,7 @@ class RomanTest {
         assertTrue(v.compareTo(x) < 0);
         assertEquals(0, x.compareTo(new RomanNumber(10)));
     }
+
 
     // ============== Tests d'échec ==============
 
