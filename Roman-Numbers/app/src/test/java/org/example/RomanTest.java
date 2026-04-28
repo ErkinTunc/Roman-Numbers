@@ -144,10 +144,19 @@ class RomanTest {
     @Order(8)
     @DisplayName("Reussite 1.8 (testComparable)")
     public void testComparable() {
+        /**
+         * str1.compareTo(str2)
+         * string1 > string2, it returns positive number
+         * string1 < string2, it returns negative number
+         * string1 == string2, it returns 0
+         */
         RomanNumber x = new RomanNumber(10);
         RomanNumber v = new RomanNumber(5);
         assertTrue(x.compareTo(v) > 0);
         assertTrue(v.compareTo(x) < 0);
+
+        assertTrue(x.compareTo(new RomanNumber("X")) == 0);
+
         assertEquals(0, x.compareTo(new RomanNumber(10)));
     }
 

@@ -1,6 +1,6 @@
 package org.example;
 
-public class RomanNumber extends Number implements Comparable<RomanNumber> {
+public class RomanNumber extends Number implements Comparable<Number> {
 
     // Current Roman Value
     private String roman;
@@ -16,8 +16,6 @@ public class RomanNumber extends Number implements Comparable<RomanNumber> {
     public RomanNumber() {
         // Ignored
     }
-
-    // -------------------- Methods -----------------------
 
     /**
      * Converts a Roman number into a normal number.
@@ -72,6 +70,8 @@ public class RomanNumber extends Number implements Comparable<RomanNumber> {
         this.roman = RomanConverter.getRomanFromNumber(this.value);
     }
 
+    // ------------------ Methods -------------------
+
     /**
      * @{inheritDoc}
      */
@@ -115,7 +115,10 @@ public class RomanNumber extends Number implements Comparable<RomanNumber> {
     }
 
     @Override
-    public int compareTo(RomanNumber other) {
-        return Integer.compare(this.value, other.value);
+    public int compareTo(Number other) {
+        if (other == null) {
+            throw new NullPointerException();
+        }
+        return Integer.compare(this.value, other.intValue());
     }
 }

@@ -15,6 +15,8 @@
    - _toFloat()_
    - _toLong()_
    - _toInt()_
+4. Implemented and tested **comparable interface**
+   - _compareTo(RomanNumber other)_
 
 ## Gradlew
 
