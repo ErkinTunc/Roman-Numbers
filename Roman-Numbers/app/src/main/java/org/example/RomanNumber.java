@@ -47,8 +47,23 @@ public class RomanNumber extends Number implements Comparable<Number> {
      * @param roman a Roman number like I, II, III, IV, ...
      */
     public RomanNumber(int value, String roman) {
+
+        if (roman == null) {
+            throw new IllegalArgumentException("Roman number cannot be null");
+        }
+        if (value <= 0 || value >= 4000) {
+            throw new IllegalArgumentException("Value is out of range (1-3999)");
+        }
+
+        String normalizedRoman = roman.trim();
+        int parsedValue = RomanConverter.getNumberFromRoman(normalizedRoman);
+
+        if (value != parsedValue) {
+            throw new IllegalArgumentException("Inconsistent value and roman number");
+        }
+
         this.value = value;
-        this.roman = roman;
+        this.roman = normalizedRoman;
     }
 
     // ----------------- Getters and Setters -------------
@@ -61,11 +76,21 @@ public class RomanNumber extends Number implements Comparable<Number> {
     }
 
     public void setRoman(String roman) {
-        this.roman = roman;
-        this.value = RomanConverter.getNumberFromRoman(this.roman);
+        if (roman == null) {
+            throw new IllegalArgumentException("Roman number cannot be null");
+        }
+
+        String normalizedRoman = roman.trim();
+        int parsedValue = RomanConverter.getNumberFromRoman(normalizedRoman);
+
+        this.roman = normalizedRoman;
+        this.value = parsedValue;
     }
 
     public void setValue(int value) {
+        if (value <= 0 || value >= 4000) {
+            throw new IllegalArgumentException("Value is out of range (1-3999)");
+        }
         this.value = value;
         this.roman = RomanConverter.getRomanFromNumber(this.value);
     }
@@ -77,7 +102,6 @@ public class RomanNumber extends Number implements Comparable<Number> {
      */
     @Override
     public double doubleValue() {
-        // TODO
         return (double) this.value;
     }
 
@@ -86,7 +110,6 @@ public class RomanNumber extends Number implements Comparable<Number> {
      */
     @Override
     public float floatValue() {
-        // TODO
         return (float) this.value;
     }
 
@@ -95,7 +118,6 @@ public class RomanNumber extends Number implements Comparable<Number> {
      */
     @Override
     public int intValue() {
-        // TODO
         return (int) this.value;
     }
 
@@ -104,13 +126,11 @@ public class RomanNumber extends Number implements Comparable<Number> {
      */
     @Override
     public long longValue() {
-        // TODO
         return (long) this.value;
     }
 
     @Override
     public String toString() {
-        // TODO
         return this.roman;
     }
 

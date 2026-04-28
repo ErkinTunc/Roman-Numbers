@@ -1,8 +1,7 @@
-# Génie Logiciel L3 - TP3
+# Roman Numbers
+**Génie Logiciel L3 - TP3**
 
-[Sujet](https://loriscroce.frama.io/enseignement/genie_logiciel_l3/tp3)
-
-[Guide JUnit](https://docs.junit.org/5.7.2/user-guide/)
+[Sujet](https://loriscroce.frama.io/enseignement/genie_logiciel_l3/tp3) , [Guide JUnit](https://docs.junit.org/5.7.2/user-guide/)
 
 1. Added Testing (Tests de réussite,Tests d’échec,Tests de validité)
    > ./gradlew test
@@ -17,6 +16,11 @@
    - _toInt()_
 4. Implemented and tested **comparable interface**
    - _compareTo(RomanNumber other)_
+5. Made Setters() **validation mandatory** for the RomanNumber class. To prevent invalid Roman numbers like " _IIIII_ -> _V_ ".
+   - _setRoman(String roman)_
+   - _setValue(int value)_
+6. Added constraints to the constructer _RomanNumber(int value, String roman)_ to prevent inconsistent Roman and normal numbers. Ex: " _IV_ -> _5_ " or " _V_ -> _4_ ".
+   - _RomanNumber(int value, String roman)_
 
 ## Gradlew
 

@@ -24,12 +24,12 @@ class RomanTest {
         assertThrows(IllegalArgumentException.class, () -> RomanConverter.getRomanFromNumber(-2));
     }
 
-    // TODO : les autres tests
-
     /*
      * ============= Testing Documentation ================
      * UNIT Testing :
      * https://www.geeksforgeeks.org/python/unit-testing-python-unittest/
+     * 
+     * !!! Check JUnit docs !!!
      * 
      * URL :
      * https://www.geeksforgeeks.org/advance-java/assertequals-vs-assertsame-in-
@@ -193,6 +193,7 @@ class RomanTest {
         assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("XXXX"));
         assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("CCCC"));
         assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("MMMM"));
+
     }
 
     @Test
@@ -235,10 +236,40 @@ class RomanTest {
         assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("DM"));
     }
 
+    @Test
+    @Order(16)
+    @DisplayName("Echec 2.8 (testSetterValidation)")
+    public void testSetterValidation() {
+        RomanNumber r = new RomanNumber();
+
+        assertThrows(IllegalArgumentException.class, () -> r.setRoman(null));
+        assertThrows(IllegalArgumentException.class, () -> r.setRoman(""));
+
+        assertThrows(IllegalArgumentException.class, () -> r.setRoman("IIIII"));
+        assertThrows(IllegalArgumentException.class, () -> r.setRoman("IC"));
+
+        assertThrows(IllegalArgumentException.class, () -> r.setValue(0));
+        assertThrows(IllegalArgumentException.class, () -> r.setValue(4000));
+    }
+
+    @Test
+    @Order(17)
+    @DisplayName("Echec 2.9 (testConstructorValidation)")
+    public void testConstructorValidation() {
+        assertThrows(IllegalArgumentException.class, () -> new RomanNumber(4, null));
+
+        assertThrows(IllegalArgumentException.class, () -> new RomanNumber(0, "I"));
+        assertThrows(IllegalArgumentException.class, () -> new RomanNumber(4000, "MMMM"));
+
+        assertThrows(IllegalArgumentException.class, () -> new RomanNumber(5, "IV"));
+        assertThrows(IllegalArgumentException.class, () -> new RomanNumber(4, "V"));
+        assertThrows(IllegalArgumentException.class, () -> new RomanNumber(5, "IC"));
+    }
+
     // ============== Tests de validité ==============
 
     @Test
-    @Order(16)
+    @Order(18)
     @DisplayName("Validite 3.1 (testRoundTripForAllValidNumbers)")
     public void testRoundTripForAllValidNumbers() {
         for (int n = 1; n <= 3999; n++) {
@@ -246,6 +277,16 @@ class RomanTest {
             int value = RomanConverter.getNumberFromRoman(roman);
             assertEquals(n, value);
         }
+    }
+
+    @Test
+    @Order(19)
+    @DisplayName("Reussite 3.2 (testConstructorWithConsistentValues)")
+    public void testConstructorWithConsistentValues() {
+        RomanNumber r = new RomanNumber(4, "IV");
+
+        assertEquals(4, r.intValue());
+        assertEquals("IV", r.toString());
     }
 
 }

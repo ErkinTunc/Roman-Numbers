@@ -37,7 +37,6 @@ public class RomanConverter {
      *                                  (inclusive)
      */
     public static String getRomanFromNumber(int a) throws IllegalArgumentException { // toRoman
-        // TODO
         if (a < 1 || a > 3999) {
             throw new IllegalArgumentException("Number must be between 1 and 3999");
         }
@@ -60,7 +59,6 @@ public class RomanConverter {
      * @throws IllegalArgumentException if input is not valid to regex or empty
      */
     public static int getNumberFromRoman(String a) throws IllegalArgumentException { // fromRoman
-        // TODO
         if (a == null || a.isEmpty() || !VALIDATION_RE.matcher(a).matches()) { // Checks if the string is valid( is
                                                                                // empty? , matches the regex?)
             throw new IllegalArgumentException("Invalid Roman number");
