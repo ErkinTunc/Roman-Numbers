@@ -157,6 +157,10 @@ class RomanTest {
 
         assertTrue(x.compareTo(new RomanNumber("X")) == 0);
 
+        assertEquals("IX", new RomanNumber(9).toString());
+        assertEquals(9, new RomanNumber("IX").intValue());
+        assertThrows(IllegalArgumentException.class, () -> new RomanNumber("IC"));
+
         assertEquals(0, x.compareTo(new RomanNumber(10)));
     }
 
