@@ -1,6 +1,6 @@
 package org.example;
 
-public class RomanNumber extends Number {
+public class RomanNumber extends Number implements Comparable<RomanNumber> {
 
     private String roman;
 
@@ -11,6 +11,9 @@ public class RomanNumber extends Number {
     }
 
     public RomanNumber(String roman) {
+        if (value < 1 || value > 3999) {
+            throw new IllegalArgumentException("Roman numbers must be between 1 and 3999");
+        }
         this.roman = roman;
         this.value = RomanConverter.getNumberFromRoman(this.roman);
     }
@@ -83,5 +86,10 @@ public class RomanNumber extends Number {
     public String toString() {
         // TODO
         return "";
+    }
+
+    @Override
+    public int compareTo(RomanNumber other) {
+        return Integer.compare(this.value, other.value);
     }
 }

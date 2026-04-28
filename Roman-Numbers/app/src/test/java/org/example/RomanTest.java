@@ -6,13 +6,235 @@ package org.example;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Order;
+
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.MethodOrderer;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class RomanTest {
 
-    @Test
-    public void testConverter() {
-        assertEquals("IV", RomanConverter.getRomanFromNumber(4));
-        assertThrows(IllegalArgumentException.class, () -> RomanConverter.getRomanFromNumber(-2));
-    }
+    /*
+     * @Test
+     * public void testConverter() {
+     * assertEquals("IV", RomanConverter.getRomanFromNumber(4));
+     * assertThrows(IllegalArgumentException.class, () ->
+     * RomanConverter.getRomanFromNumber(-2));
+     * }
+     */
 
     // TODO : les autres tests
+
+    /*
+     * ============= Testing Documentation ================
+     * UNIT Testing :
+     * https://www.geeksforgeeks.org/python/unit-testing-python-unittest/
+     * 
+     * URL :
+     * https://www.geeksforgeeks.org/advance-java/assertequals-vs-assertsame-in-
+     * junit/
+     * - assertEquals : is used to compare the values of two objects or primitive
+     * types. It checks whether the provided values are logically equal
+     * - assertSame : checks whether two objects refer to the same instance in
+     * memory
+     * 
+     * URL :
+     * https://www.geeksforgeeks.org/python/test-if-a-function-throws-an-exception-
+     * in-python/
+     * - assertRaises : It allows an exception to be encapsulated, meaning that the
+     * test can throw an exception without exiting the execution
+     * 
+     * URL : https://docs.nunit.org/articles/nunit/writing-tests/assertions/classic-
+     * assertions/Assert.Throws.html
+     * URL (how to use):
+     * https://stackoverflow.com/questions/1609536/how-do-i-use-assert-throws-to-
+     * assert-the-type-of-the-exception
+     * - Assert.Throws : Rather than comparing values, it attempts to invoke a code
+     * snippet, represented as a delegate, in order to verify that it throws a
+     * particular exception.(returns the exception that's thrown which lets you
+     * assert on the exception.)
+     * 
+     */
+
+    // ============== Tests de réussite ==============
+
+    // ---- Normal Numbers -> Roman Numbers ----
+    @Test
+    @Order(1)
+    @DisplayName("Reussite 1.1")
+    public void testBasicRomanSymbols() {
+        assertEquals("I", RomanConverter.getRomanFromNumber(1));
+        assertEquals("V", RomanConverter.getRomanFromNumber(5));
+        assertEquals("X", RomanConverter.getRomanFromNumber(10));
+        assertEquals("L", RomanConverter.getRomanFromNumber(50));
+        assertEquals("C", RomanConverter.getRomanFromNumber(100));
+        assertEquals("D", RomanConverter.getRomanFromNumber(500));
+        assertEquals("M", RomanConverter.getRomanFromNumber(1000));
+    }
+
+    @Test
+    @Order(2)
+    @DisplayName("Reussite 1.2")
+    public void testSimpleAdditiveNumbers() {
+        assertEquals("II", RomanConverter.getRomanFromNumber(2));
+        assertEquals("III", RomanConverter.getRomanFromNumber(3));
+        assertEquals("VI", RomanConverter.getRomanFromNumber(6));
+        assertEquals("VII", RomanConverter.getRomanFromNumber(7));
+        assertEquals("VIII", RomanConverter.getRomanFromNumber(8));
+        assertEquals("XI", RomanConverter.getRomanFromNumber(11));
+    }
+
+    @Test
+    @Order(3)
+    @DisplayName("Reussite 1.3")
+    public void testSubtractiveNotation() {
+        assertEquals("IV", RomanConverter.getRomanFromNumber(4));
+        assertEquals("IX", RomanConverter.getRomanFromNumber(9));
+        assertEquals("XL", RomanConverter.getRomanFromNumber(40));
+        assertEquals("XC", RomanConverter.getRomanFromNumber(90));
+        assertEquals("CD", RomanConverter.getRomanFromNumber(400));
+        assertEquals("CM", RomanConverter.getRomanFromNumber(900));
+    }
+
+    @Test
+    @Order(4)
+    @DisplayName("Reussite 1.4")
+    public void testComplexKnownNumbers() {
+        assertEquals("XIV", RomanConverter.getRomanFromNumber(14));
+        assertEquals("XIX", RomanConverter.getRomanFromNumber(19));
+        assertEquals("LVIII", RomanConverter.getRomanFromNumber(58));
+        assertEquals("MCMXCIV", RomanConverter.getRomanFromNumber(1994));
+        assertEquals("MMMCMXCIX", RomanConverter.getRomanFromNumber(3999));
+    }
+
+    // ---- Roman to Normal Numbres ----
+    @Test
+    @Order(5)
+    @DisplayName("Reussite 1.5")
+    public void testKnownRomanToNumberValues() {
+        assertEquals(1, RomanConverter.getNumberFromRoman("I"));
+        assertEquals(4, RomanConverter.getNumberFromRoman("IV"));
+        assertEquals(9, RomanConverter.getNumberFromRoman("IX"));
+        assertEquals(58, RomanConverter.getNumberFromRoman("LVIII"));
+        assertEquals(1994, RomanConverter.getNumberFromRoman("MCMXCIV"));
+        assertEquals(3999, RomanConverter.getNumberFromRoman("MMMCMXCIX"));
+    }
+
+    // ---- RomanNumber object ----
+    @Test
+    @Order(6)
+    @DisplayName("Reussite 1.6")
+    public void testToString() {
+        RomanNumber r = new RomanNumber(14);
+        assertEquals("XIV", r.toString());
+    }
+
+    @Test
+    @Order(7)
+    @DisplayName("Reussite 1.7")
+    public void testNumericConversions() {
+        RomanNumber r = new RomanNumber(14);
+        assertEquals(14, r.intValue());
+        assertEquals(14L, r.longValue());
+        assertEquals(14.0, r.doubleValue());
+    }
+
+    @Test
+    @Order(8)
+    @DisplayName("Reussite 1.8")
+    public void testComparable() {
+        RomanNumber x = new RomanNumber(10);
+        RomanNumber v = new RomanNumber(5);
+        assertTrue(x.compareTo(v) > 0);
+        assertTrue(v.compareTo(x) < 0);
+        assertEquals(0, x.compareTo(new RomanNumber(10)));
+    }
+
+    // ============== Tests d'échec ==============
+
+    // ---- Invalid numbers ----
+    @Test
+    @Order(9)
+    @DisplayName("Echec 2.1")
+    public void testNumberOutOfRange() {
+        assertThrows(IllegalArgumentException.class, () -> RomanConverter.getRomanFromNumber(0));
+        assertThrows(IllegalArgumentException.class, () -> RomanConverter.getRomanFromNumber(-1));
+        assertThrows(IllegalArgumentException.class, () -> RomanConverter.getRomanFromNumber(4000));
+    }
+
+    // ---- Invalid Roman strings ----
+    @Test
+    @Order(10)
+    @DisplayName("Echec 2.2")
+    public void testNullAndEmptyRomanInputs() {
+        assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman(null));
+        assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman(""));
+    }
+
+    @Test
+    @Order(11)
+    @DisplayName("Echec 2.3")
+    public void testTooManySymbolRepetitions() {
+        assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("IIII"));
+        assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("XXXX"));
+        assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("CCCC"));
+        assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("MMMM"));
+    }
+
+    @Test
+    @Order(12)
+    @DisplayName("Echec 2.4")
+    public void testFiveSymbolsCannotRepeat() {
+        assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("VV"));
+        assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("LL"));
+        assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("DD"));
+    }
+
+    @Test
+    @Order(13)
+    @DisplayName("Echec 2.5")
+    public void testRepeatedSubtractivePairs() {
+        assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("IVIV"));
+        assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("IXIX"));
+        assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("XCXC"));
+    }
+
+    @Test
+    @Order(14)
+    @DisplayName("Echec 2.6")
+    public void testInvalidSubtractiveForms() {
+        assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("IL"));
+        assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("IC"));
+        assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("ID"));
+        assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("IM"));
+        assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("XD"));
+        assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("XM"));
+    }
+
+    @Test
+    @Order(15)
+    @DisplayName("Echec 2.7")
+    public void testInvalidOrdering() {
+        assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("IXX"));
+        assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("VX"));
+        assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("LC"));
+        assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("DM"));
+    }
+
+    // ============== Tests de validité ==============
+
+    @Test
+    @Order(16)
+    @DisplayName("Validite 3.1")
+    public void testRoundTripForAllValidNumbers() {
+        for (int n = 1; n <= 3999; n++) {
+            String roman = RomanConverter.getRomanFromNumber(n);
+            int value = RomanConverter.getNumberFromRoman(roman);
+            assertEquals(n, value);
+        }
+    }
+
 }
