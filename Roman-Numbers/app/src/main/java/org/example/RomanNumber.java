@@ -28,9 +28,6 @@ public class RomanNumber extends Number implements Comparable<RomanNumber> {
      * @param roman
      */
     public RomanNumber(String roman) {
-        if (value < 1 || value > 3999) {
-            throw new IllegalArgumentException("Roman numbers must be between 1 and 3999");
-        }
         this.roman = roman;
         this.value = RomanConverter.getNumberFromRoman(this.roman);
     }

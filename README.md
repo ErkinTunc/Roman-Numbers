@@ -9,7 +9,12 @@
 2. Implemented toRoman() et fromRoman() , passes all the tests
    - _getRomanFromNumber(int a)_
    - _getNumberFromRoman(String a)_
-3.
+3. Implemented and tested methods **java.lang.Number**
+   - _toString()_
+   - _toDouble()_
+   - _toFloat()_
+   - _toLong()_
+   - _toInt()_
 
 ## Gradlew
 
@@ -28,3 +33,4 @@
 - > ./gradlew test
 
   Runs the test task for all subprojects when invoked from the root project
+  (if it is correct it should run all the tests and just show the summary of all test, if not it will only show the mistakes.)

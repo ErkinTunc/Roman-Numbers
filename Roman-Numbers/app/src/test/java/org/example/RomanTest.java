@@ -18,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class RomanTest {
 
     @Test
+    @DisplayName("Reussite 1.0 (testConverter)")
     public void testConverter() {
         assertEquals("IV", RomanConverter.getRomanFromNumber(4));
         assertThrows(IllegalArgumentException.class, () -> RomanConverter.getRomanFromNumber(-2));
@@ -61,7 +62,7 @@ class RomanTest {
     // ---- Normal Numbers -> Roman Numbers ----
     @Test
     @Order(1)
-    @DisplayName("Reussite 1.1")
+    @DisplayName("Reussite 1.1 (testBasicRomanSymbols)")
     public void testBasicRomanSymbols() {
         assertEquals("I", RomanConverter.getRomanFromNumber(1));
         assertEquals("V", RomanConverter.getRomanFromNumber(5));
@@ -74,7 +75,7 @@ class RomanTest {
 
     @Test
     @Order(2)
-    @DisplayName("Reussite 1.2")
+    @DisplayName("Reussite 1.2 (testSimpleAdditiveNumbers)")
     public void testSimpleAdditiveNumbers() {
         assertEquals("II", RomanConverter.getRomanFromNumber(2));
         assertEquals("III", RomanConverter.getRomanFromNumber(3));
@@ -86,7 +87,7 @@ class RomanTest {
 
     @Test
     @Order(3)
-    @DisplayName("Reussite 1.3")
+    @DisplayName("Reussite 1.3 (testSubtractiveNotation)")
     public void testSubtractiveNotation() {
         assertEquals("IV", RomanConverter.getRomanFromNumber(4));
         assertEquals("IX", RomanConverter.getRomanFromNumber(9));
@@ -98,7 +99,7 @@ class RomanTest {
 
     @Test
     @Order(4)
-    @DisplayName("Reussite 1.4")
+    @DisplayName("Reussite 1.4 (testComplexKnownNumbers)")
     public void testComplexKnownNumbers() {
         assertEquals("XIV", RomanConverter.getRomanFromNumber(14));
         assertEquals("XIX", RomanConverter.getRomanFromNumber(19));
@@ -110,7 +111,7 @@ class RomanTest {
     // ---- Roman to Normal Numbres ----
     @Test
     @Order(5)
-    @DisplayName("Reussite 1.5")
+    @DisplayName("Reussite 1.5 (testKnownRomanToNumberValues)")
     public void testKnownRomanToNumberValues() {
         assertEquals(1, RomanConverter.getNumberFromRoman("I"));
         assertEquals(4, RomanConverter.getNumberFromRoman("IV"));
@@ -123,7 +124,7 @@ class RomanTest {
     // ---- RomanNumber object ----
     @Test
     @Order(6)
-    @DisplayName("Reussite 1.6")
+    @DisplayName("Reussite 1.6 (testToString)")
     public void testToString() {
         RomanNumber r = new RomanNumber(14);
         assertEquals("XIV", r.toString());
@@ -131,7 +132,7 @@ class RomanTest {
 
     @Test
     @Order(7)
-    @DisplayName("Reussite 1.7")
+    @DisplayName("Reussite 1.7 (testNumericConversions)")
     public void testNumericConversions() {
         RomanNumber r = new RomanNumber(14);
         assertEquals(14, r.intValue());
@@ -141,7 +142,7 @@ class RomanTest {
 
     @Test
     @Order(8)
-    @DisplayName("Reussite 1.8")
+    @DisplayName("Reussite 1.8 (testComparable)")
     public void testComparable() {
         RomanNumber x = new RomanNumber(10);
         RomanNumber v = new RomanNumber(5);
@@ -150,13 +151,12 @@ class RomanTest {
         assertEquals(0, x.compareTo(new RomanNumber(10)));
     }
 
-
     // ============== Tests d'échec ==============
 
     // ---- Invalid numbers ----
     @Test
     @Order(9)
-    @DisplayName("Echec 2.1")
+    @DisplayName("Echec 2.1 (testNumberOutOfRange)")
     public void testNumberOutOfRange() {
         assertThrows(IllegalArgumentException.class, () -> RomanConverter.getRomanFromNumber(0));
         assertThrows(IllegalArgumentException.class, () -> RomanConverter.getRomanFromNumber(-1));
@@ -166,7 +166,7 @@ class RomanTest {
     // ---- Invalid Roman strings ----
     @Test
     @Order(10)
-    @DisplayName("Echec 2.2")
+    @DisplayName("Echec 2.2 (testNullAndEmptyRomanInputs)")
     public void testNullAndEmptyRomanInputs() {
         assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman(null));
         assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman(""));
@@ -174,7 +174,7 @@ class RomanTest {
 
     @Test
     @Order(11)
-    @DisplayName("Echec 2.3")
+    @DisplayName("Echec 2.3 (testTooManySymbolRepetitions)")
     public void testTooManySymbolRepetitions() {
         assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("IIII"));
         assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("XXXX"));
@@ -184,7 +184,7 @@ class RomanTest {
 
     @Test
     @Order(12)
-    @DisplayName("Echec 2.4")
+    @DisplayName("Echec 2.4 (testFiveSymbolsCannotRepeat)")
     public void testFiveSymbolsCannotRepeat() {
         assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("VV"));
         assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("LL"));
@@ -193,7 +193,7 @@ class RomanTest {
 
     @Test
     @Order(13)
-    @DisplayName("Echec 2.5")
+    @DisplayName("Echec 2.5 (testRepeatedSubtractivePairs)")
     public void testRepeatedSubtractivePairs() {
         assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("IVIV"));
         assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("IXIX"));
@@ -202,7 +202,7 @@ class RomanTest {
 
     @Test
     @Order(14)
-    @DisplayName("Echec 2.6")
+    @DisplayName("Echec 2.6 (testInvalidSubtractiveForms)")
     public void testInvalidSubtractiveForms() {
         assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("IL"));
         assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("IC"));
@@ -214,7 +214,7 @@ class RomanTest {
 
     @Test
     @Order(15)
-    @DisplayName("Echec 2.7")
+    @DisplayName("Echec 2.7 (testInvalidOrdering)")
     public void testInvalidOrdering() {
         assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("IXX"));
         assertThrows(IllegalArgumentException.class, () -> RomanConverter.getNumberFromRoman("VX"));
@@ -226,7 +226,7 @@ class RomanTest {
 
     @Test
     @Order(16)
-    @DisplayName("Validite 3.1")
+    @DisplayName("Validite 3.1 (testRoundTripForAllValidNumbers)")
     public void testRoundTripForAllValidNumbers() {
         for (int n = 1; n <= 3999; n++) {
             String roman = RomanConverter.getRomanFromNumber(n);
