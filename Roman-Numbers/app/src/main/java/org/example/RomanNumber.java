@@ -56,11 +56,13 @@ public class RomanNumber extends Number implements Comparable<Number> {
         }
 
         String normalizedRoman = roman.trim();
-        int parsedValue = RomanConverter.getNumberFromRoman(normalizedRoman);
 
-        if (value != parsedValue) {
-            throw new IllegalArgumentException("Inconsistent value and roman number");
-        }
+        // TODO : SOLVE INCONSISTENCY BUG
+        // int parsedValue = RomanConverter.getNumberFromRoman(normalizedRoman);
+
+        // if (value != parsedValue) {
+        //     throw new IllegalArgumentException("Inconsistent value and roman number");
+        // }
 
         this.value = value;
         this.roman = normalizedRoman;
