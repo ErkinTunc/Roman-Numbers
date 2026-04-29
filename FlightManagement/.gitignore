@@ -3,12 +3,9 @@
 
 # Ignore Gradle build output directory
 build
-app/build
-*.class
-
 
 # Ignore Kotlin plugin data
 .kotlin
 
 .vscode
-.bin
+app/build
