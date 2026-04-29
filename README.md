@@ -40,3 +40,6 @@
 
   Runs the test task for all subprojects when invoked from the root project
   (if it is correct it should run all the tests and just show the summary of all test, if not it will only show the mistakes.)
+  - > build/reports/tests/test/index.html
+
+    To see the details of the tests on the browser.
